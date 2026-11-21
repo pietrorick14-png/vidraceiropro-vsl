@@ -1,130 +1,862 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Vidraceiro Pro · O app do dono de vidraçaria</title>
-<meta name="description" content="Projeto em 3D, orçamento profissional no WhatsApp, plano de corte e retalhos. O app feito para o dono de vidraçaria, direto no celular.">
-<meta name="theme-color" content="#0E1113">
-<meta property="og:title" content="Vidraceiro Pro · O app do dono de vidraçaria">
-<meta property="og:description" content="Mostre o projeto em 3D e mande o orçamento no WhatsApp em minutos, pelo celular.">
-<meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E1113'/%3E%3Cpath d='M7 22V10l9 7 9-7v12' fill='none' stroke='%232F80ED' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
-<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/b2dd1386-ac01-45b3-9dc5-89e5f052f76d/players/6afbee19ce292bd10f0051be/v4/player.js" as="script">
-<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="preload" href="https://cdn.converteai.net/b2dd1386-ac01-45b3-9dc5-89e5f052f76d/6afbed8edac166e52195abbf/main.m3u8" as="fetch">
-<link rel="dns-prefetch" href="https://cdn.converteai.net">
-<link rel="dns-prefetch" href="https://scripts.converteai.net">
-<link rel="dns-prefetch" href="https://images.converteai.net">
-<link rel="dns-prefetch" href="https://license.vturb.com">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vidraceiro Pro</title>
+<meta name="description" content="Projeto em 3D e orçamento pronto no celular para vidraceiros e serralheiros de esquadria. Mande o link no WhatsApp e feche mais orçamentos.">
 <!-- Utmify: rastreamento de UTMs -->
 <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids data-utmify-is-stripe async defer></script>
 <!-- Utmify: pixel de conversão do Vidraceiro Pro -->
 <script>window.pixelId = "6afbdf29926f842703534c15";</script>
 <script src="https://cdn.utmify.com.br/scripts/pixel/pixel.js" async defer></script>
 <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0B0D0F;--s1:#14181B;--s2:#1B2024;--ln:rgba(255,255,255,.09);--tx:#F4F1EA;--mu:#A7A9A6;--au:#2F80ED;--au2:#5B9DFF;--ok:#3DBE7A;--no:#F06B5B}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;background:var(--bg)}
-body{background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root{
+  /* Página de um mundo só (escura, cor do app). Ideia de layout: o vidro e a cota de medida — linhas de dimensão com "cm" atravessam a página como numa planta técnica. */
+  --ink:#061316;
+  --panel:#0b1f23;
+  --panel-2:#0f282d;
+  --line:rgba(140,220,228,.16);
+  --text:#eaf5f4;
+  --muted:#93aeb0;
+  --teal:#3fd6cf;
+  --gold:#f7c448;
+  --red:#ff7a6b;
+  --ok:#3ee08f;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:22px;
+  --gut:clamp(16px,4.5vw,40px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--text);font:400 17px/1.55 var(--f-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
 a{color:inherit}
-.w{width:100%;max-width:560px;margin:0 auto;padding:0 16px}
-.top{padding:14px 0 0;text-align:center;font-weight:800;letter-spacing:.01em;font-size:17px}.top b{color:var(--au)}
-.hero{padding:22px 0 14px;text-align:center}
-.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--au2);border:1px solid rgba(47,128,237,.4);background:rgba(47,128,237,.1);padding:5px 11px;border-radius:999px;margin-bottom:12px}
-h1{font-size:clamp(25px,7vw,36px);line-height:1.14;font-weight:850;letter-spacing:-.015em}
-h1 em{font-style:normal;color:var(--au2)}
-.sub{margin-top:10px;color:#D6D3CC;font-size:clamp(15px,4.2vw,18px);line-height:1.45}
-/* VSL (vertical, formato de celular) */
-.vsl{position:relative;width:100%;max-width:400px;margin:4px auto 0;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(47,128,237,.3),0 20px 60px rgba(0,0,0,.6)}
-.vsl-ph{aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(120% 70% at 50% 30%,#0F1F3A,#0B0D0F 70%);color:var(--mu);font-size:14px;text-align:center;padding:24px}
-.vsl-ph i{width:76px;height:76px;border-radius:50%;background:var(--au);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(47,128,237,.18)}
-.som{margin:12px auto 24px;text-align:center;font-size:13.5px;color:var(--mu)}.som b{color:var(--tx)}
-/* tudo que só aparece no pitch */
-.esconder{display:none}
-html.liberado .esconder{display:block!important}
-.cta-box{margin:22px 0 6px;padding:20px 16px;border-radius:20px;background:linear-gradient(180deg,#121A2C,#121416);border:1px solid rgba(47,128,237,.4);text-align:center}
-.preco small{display:block;color:var(--mu);font-size:13.5px}
-.preco b{display:block;font-size:44px;line-height:1.1;font-weight:850;color:var(--au2);letter-spacing:-.02em;margin:4px 0}
-.preco b span{font-size:17px;color:var(--tx);font-weight:700}
-.aviso{display:inline-flex;gap:7px;align-items:center;margin:4px 0 14px;font-size:13px;font-weight:700;color:#FFB4A9;background:rgba(240,107,91,.12);border:1px solid rgba(240,107,91,.35);padding:6px 11px;border-radius:999px;text-align:left}
-.aviso i{width:8px;height:8px;border-radius:50%;background:var(--no);flex:none;animation:pi 1.4s infinite}
-@keyframes pi{50%{opacity:.25}}
-.btn{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:62px;padding:12px 16px;border-radius:16px;background:linear-gradient(180deg,var(--au2),#1C5FD6);color:#FFFFFF;text-decoration:none;font-weight:900;font-size:clamp(16px,4.6vw,19px);letter-spacing:.01em;text-transform:uppercase;box-shadow:0 10px 30px rgba(47,128,237,.35),inset 0 -3px 0 rgba(0,0,0,.18);animation:pu 2.2s infinite;-webkit-tap-highlight-color:transparent}
-.btn small{font-size:12px;font-weight:700;text-transform:none;letter-spacing:0;opacity:.75;margin-top:2px}
+h1,h2,h3{font-family:var(--f-display);font-stretch:118%;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(32px,6.4vw,58px);font-weight:850}
+h3{font-size:22px;font-weight:800;font-stretch:108%}
+p{margin:0}
+.wrap{width:min(1160px,100% - var(--gut)*2);margin-inline:auto}
+.gold{color:var(--gold)}
+.teal{color:var(--teal)}
+.mono{font-family:var(--f-mono);font-weight:500;letter-spacing:.02em}
+.tag{display:inline-flex;align-items:center;gap:8px;font:600 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.tag::before{content:"";width:22px;height:1px;background:currentColor;box-shadow:-3px 0 0 -0px currentColor}
+.lede{color:var(--muted);font-size:clamp(17px,2.1vw,20px);max-width:58ch}
+section{position:relative;padding:clamp(72px,11vw,128px) 0}
+.sec-head{display:grid;gap:16px;margin-bottom:clamp(32px,5vw,56px)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ---------- botões ---------- */
+.btn{--bg:var(--gold);display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 28px;border-radius:999px;border:0;background:var(--bg);color:#1b1404;font:800 17px/1 var(--f-display);font-stretch:112%;letter-spacing:.01em;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -10px rgba(247,196,72,.55),inset 0 -3px 0 rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(247,196,72,.7),inset 0 -3px 0 rgba(0,0,0,.18)}
 .btn:active{transform:translateY(1px)}
-@keyframes pu{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
-@media (prefers-reduced-motion:reduce){.btn,.aviso i{animation:none}}
-.dica{font-size:13.5px;color:#D6D3CC;margin:0 0 4px}.dica b{color:var(--tx)}
-.seg{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:12px;font-size:12.5px;color:var(--mu)}
-.seg span::before{content:"✓ ";color:var(--ok);font-weight:900}
-section{padding:30px 0 4px}
-h2{font-size:clamp(21px,5.8vw,27px);line-height:1.2;font-weight:850;text-align:center;letter-spacing:-.01em}
-h2 em{font-style:normal;color:var(--au2)}
-.lead{text-align:center;color:var(--mu);margin-top:8px;font-size:15px}
-.dor{margin-top:16px;display:grid;gap:8px}
-.dor p{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:var(--s1);border:1px solid var(--ln);font-size:15px}
-.dor p::before{content:"✕";flex:none;width:22px;height:22px;border-radius:50%;background:rgba(240,107,91,.15);color:var(--no);font-size:12px;font-weight:900;display:grid;place-items:center;margin-top:1px}
-.fs{margin-top:16px;display:grid;gap:10px}
-.f{display:flex;gap:13px;padding:15px;border-radius:16px;background:var(--s1);border:1px solid var(--ln)}
-.f i{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(47,128,237,.12);border:1px solid rgba(47,128,237,.3);display:grid;place-items:center}
-.f svg{width:22px;height:22px;stroke:var(--au2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.f b{display:block;font-size:16px;line-height:1.3}
-.f span{display:block;color:var(--mu);font-size:14px;margin-top:3px}
-.pass{margin-top:16px;display:grid;gap:10px;counter-reset:p}
-.pass p{position:relative;padding:14px 14px 14px 58px;border-radius:16px;background:var(--s1);border:1px solid var(--ln);font-size:15px}
-.pass p::before{counter-increment:p;content:counter(p);position:absolute;left:14px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--au);color:#FFFFFF;font-weight:900;display:grid;place-items:center}
-.pass b{display:block}
-.conta{margin-top:16px;padding:16px;border-radius:16px;background:var(--s1);border:1px solid var(--ln);display:grid;gap:9px;font-size:15px}
-.conta div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--ln);padding-bottom:9px}
-.conta div:last-child{border:0;padding:0;font-weight:800;color:var(--au2)}
-.conta span:last-child{white-space:nowrap;font-weight:700}
-details{margin-top:8px;border-radius:14px;background:var(--s1);border:1px solid var(--ln)}
-details:first-of-type{margin-top:16px}
-summary{list-style:none;cursor:pointer;padding:14px 44px 14px 15px;font-weight:700;font-size:15px;position:relative}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--au2);font-size:22px;font-weight:600}
-details[open] summary::after{content:"−"}
-details p{padding:0 15px 15px;color:#CFCCC5;font-size:14.5px}
-.fim{padding-bottom:34px}
-footer{border-top:1px solid var(--ln);padding:20px 0 calc(96px + env(safe-area-inset-bottom,0px));text-align:center;color:#9A9C9A;font-size:12px;line-height:1.6}
-footer a{color:var(--mu)}
-/* botão que acompanha a rolagem (só depois do pitch) */
-.fixo{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(11,13,15,0),rgba(11,13,15,.94) 30%);transform:translateY(110%);visibility:hidden;transition:transform .25s,visibility .25s}
-.fixo.on{transform:none;visibility:visible}
-.fixo .btn{max-width:528px;margin:0 auto;min-height:54px;animation:none;font-size:16px}
+.btn svg{width:20px;height:20px}
+.btn.ghost{--bg:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--teal)}
+.btn.block{width:100%}
+
+/* ---------- cota (linha de dimensão) ---------- */
+.dim{position:absolute;display:flex;align-items:center;justify-content:center;color:var(--teal);pointer-events:none}
+.dim i{position:absolute;background:currentColor;opacity:.7}
+.dim span{position:relative;font:700 12px/1 var(--f-mono);background:var(--ink);padding:5px 8px;border-radius:6px;border:1px solid rgba(63,214,207,.45);white-space:nowrap}
+.dim.h{height:20px}
+.dim.h i.l{left:0;right:0;top:50%;height:1px}
+.dim.h i.a,.dim.h i.b{top:2px;bottom:2px;width:1px}
+.dim.h i.a{left:0}.dim.h i.b{right:0}
+.dim.v{width:20px}
+.dim.v i.l{top:0;bottom:0;left:50%;width:1px}
+.dim.v i.a,.dim.v i.b{left:2px;right:2px;height:1px}
+.dim.v i.a{top:0}.dim.v i.b{bottom:0}
+.dim.v span{writing-mode:vertical-rl;transform:rotate(180deg);padding:8px 5px}
+
+/* ---------- topo ---------- */
+.top{position:absolute;inset:0 0 auto;z-index:5;padding:18px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 18px/1 var(--f-display);font-stretch:110%}
+.brand img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(63,214,207,.35))}
+.top .mini{font:600 13px/1 var(--f-mono);color:var(--muted)}
+
+.hero{padding:104px 0 clamp(56px,9vw,96px);overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;z-index:-1;background:
+  radial-gradient(60% 50% at 78% 38%,rgba(63,214,207,.20),transparent 70%),
+  radial-gradient(40% 35% at 10% 10%,rgba(247,196,72,.10),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(70% 60% at 70% 40%,#000 10%,transparent 75%);-webkit-mask-image:radial-gradient(70% 60% at 70% 40%,#000 10%,transparent 75%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(42px,8.4vw,92px);font-weight:900;font-stretch:122%;line-height:.94}
+.hero h1 .l2{display:block;color:var(--gold)}
+.hero .lede{margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.proof{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;color:var(--muted);font-size:15px}
+.proof b{color:var(--text)}
+.proof span{display:inline-flex;align-items:center;gap:8px}
+.proof svg{width:18px;height:18px;color:var(--teal)}
+
+.stage{position:relative;justify-self:center;width:min(330px,78vw);padding:34px 0 0 34px}
+.phone{position:relative;border-radius:42px;padding:10px;background:linear-gradient(160deg,#1d3a40,#071518 55%,#14292d);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(160,230,235,.18),inset 0 0 0 1px rgba(255,255,255,.04)}
+.phone .scr{position:relative;border-radius:33px;overflow:hidden;background:#000;aspect-ratio:9/16}
+.phone .scr.tall{aspect-ratio:480/1006}
+.phone video,.phone img.poster{width:100%;height:100%;object-fit:cover}
+.phone::before{content:"";position:absolute;top:18px;left:50%;width:84px;height:22px;transform:translateX(-50%);border-radius:20px;background:#000;z-index:2}
+.stage .dim.h{top:0;left:44px;right:10px}
+.stage .dim.v{left:0;top:44px;bottom:10px}
+.badge-float{position:absolute;right:-14px;bottom:56px;z-index:3;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:rgba(8,26,30,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 18px 40px -18px #000;font-size:14px;line-height:1.25}
+.badge-float b{display:block;font:800 18px/1 var(--f-display);font-stretch:110%;color:var(--ok)}
+.badge-float .dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(62,224,143,.15);color:var(--ok)}
+.badge-float .dot svg{width:18px;height:18px}
+
+/* animação de entrada (parte já visível em repouso) */
+@media (prefers-reduced-motion:no-preference){
+  .hero .stage{animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+  .stage .dim.h{animation:drawx .9s .45s cubic-bezier(.6,0,.2,1) both;transform-origin:left}
+  .stage .dim.v{animation:drawy .9s .65s cubic-bezier(.6,0,.2,1) both;transform-origin:bottom}
+  .badge-float{animation:pop .6s 1.2s cubic-bezier(.2,1.4,.4,1) both}
+  .hero h1 .l2{animation:glint 1.4s .3s ease both}
+}
+@keyframes rise{from{transform:translateY(40px) rotate(2deg)}to{transform:none}}
+@keyframes drawx{from{transform:scaleX(.08)}to{transform:none}}
+@keyframes drawy{from{transform:scaleY(.08)}to{transform:none}}
+@keyframes pop{from{transform:scale(.6)}to{transform:none}}
+@keyframes glint{from{filter:brightness(1.8)}to{filter:none}}
+
+/* ---------- faixa de modelos ---------- */
+.ticker{border-block:1px solid var(--line);background:var(--panel);overflow:hidden;padding:16px 0}
+.ticker .track{display:flex;gap:44px;width:max-content;font:800 clamp(18px,2.6vw,26px)/1 var(--f-display);font-stretch:120%;text-transform:uppercase;white-space:nowrap}
+.ticker .track span{display:inline-flex;align-items:center;gap:44px}
+.ticker .track span::after{content:"";width:10px;height:10px;border:2px solid var(--gold);transform:rotate(45deg)}
+.ticker .track em{font-style:normal;color:var(--gold)}
+@media (prefers-reduced-motion:no-preference){.ticker .track{animation:tick 38s linear infinite}}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- dor (cartões empilhando) ---------- */
+.pain{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,72px)}
+.pain .sec-head{position:sticky;top:90px;align-self:start}
+.stack{display:grid;gap:22px;padding-bottom:20px}
+.card-pain{position:sticky;top:calc(96px + var(--i)*18px);min-height:210px;padding:28px;border-radius:var(--r);background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);box-shadow:0 -18px 40px -24px #000;transform:rotate(calc((var(--i) - 1.5)*.6deg))}
+.card-pain .n{font:700 13px/1 var(--f-mono);color:var(--red);letter-spacing:.06em}
+.card-pain h3{margin:14px 0 10px;font-size:clamp(24px,3.2vw,32px)}
+.card-pain p{color:var(--muted)}
+.card-pain .x{position:absolute;right:22px;top:22px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,122,107,.12);color:var(--red)}
+.card-pain .x svg{width:20px;height:20px}
+
+/* ---------- antes x depois ---------- */
+.ba{position:relative;max-width:560px;margin-inline:auto;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -40px #000;--pos:50%;touch-action:pan-y;user-select:none}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .after{clip-path:inset(0 0 0 var(--pos))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--gold);transform:translateX(-1px);pointer-events:none}
+.ba .handle::after{content:"";position:absolute;top:50%;left:50%;width:56px;height:56px;transform:translate(-50%,-50%);border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b1404' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center/26px no-repeat;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .lbl{position:absolute;top:16px;padding:8px 12px;border-radius:10px;font:700 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+.ba .lbl.l{left:16px;background:rgba(0,0,0,.65);color:#fff}
+.ba .lbl.r{right:16px;background:var(--teal);color:#032321}
+.ba-cap{display:flex;justify-content:space-between;gap:16px;max-width:560px;margin:18px auto 0;color:var(--muted);font-size:15px}
+.ba-cap b{color:var(--text)}
+
+/* ---------- passos ---------- */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,96px)}
+.steps .sticky{position:sticky;top:80px;align-self:start;display:grid;place-items:center;padding:20px 0}
+.steps .sticky .phone{width:min(300px,70vw)}
+.steps .sticky video{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.steps .sticky video.on{opacity:1}
+.step{min-height:70vh;display:grid;align-content:center;gap:14px;padding:24px 0;opacity:.35;transition:opacity .4s}
+.step.on{opacity:1}
+.step .num{font:900 clamp(72px,11vw,120px)/.8 var(--f-display);font-stretch:125%;color:transparent;-webkit-text-stroke:1.5px var(--teal)}
+.step.on .num{color:var(--teal);-webkit-text-stroke:0}
+.step h3{font-size:clamp(28px,4vw,40px)}
+.step p{color:var(--muted);max-width:42ch}
+.step .phone{display:none;width:min(260px,72vw);margin-top:14px}
+
+/* ---------- carrossel 3D ---------- */
+.models{overflow:hidden}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px calc(50% - 130px) 30px;scrollbar-width:none;perspective:1200px}
+.rail::-webkit-scrollbar{display:none}
+.model{flex:0 0 260px;scroll-snap-align:center;border-radius:var(--r);overflow:hidden;background:var(--panel);border:1px solid var(--line);transform:scale(var(--s,1)) rotateY(var(--ry,0deg));transition:transform .15s linear,border-color .3s;will-change:transform}
+.model.mid{border-color:rgba(63,214,207,.6)}
+.model .vid{aspect-ratio:9/16;background:#0a1a1d}
+.model video{width:100%;height:100%;object-fit:cover}
+.model .cap{padding:14px 16px 16px;display:grid;gap:4px}
+.model .cap b{font:800 18px/1.1 var(--f-display);font-stretch:112%}
+.model .cap span{font:500 12px/1.2 var(--f-mono);color:var(--teal)}
+.rail-nav{display:flex;justify-content:center;gap:12px}
+.rail-nav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;display:grid;place-items:center}
+.rail-nav button:hover{border-color:var(--teal)}
+.rail-nav svg{width:22px;height:22px}
+
+/* ---------- funções ---------- */
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.feat{position:relative;display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:end;padding:26px;border-radius:var(--r);background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);overflow:hidden}
+.feat::before{content:"";position:absolute;inset:auto -30% -60% auto;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(rgba(63,214,207,.18),transparent 70%)}
+.feat .txt{display:grid;gap:10px;align-self:start;position:relative}
+.feat .k{font:700 12px/1 var(--f-mono);color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.feat h3{font-size:clamp(22px,2.6vw,28px)}
+.feat p{color:var(--muted);font-size:16px}
+.feat .phone{border-radius:26px;padding:6px;margin-bottom:-60px}
+.feat .phone::before{display:none}
+.feat .phone .scr{border-radius:21px}
+.feat.wide{grid-column:span 2;grid-template-columns:1fr 210px}
+
+/* ---------- cliente ---------- */
+.client{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,6vw,80px);align-items:center}
+.wa{max-width:430px;border-radius:26px;overflow:hidden;background:#0b141a;border:1px solid #1f2c33;box-shadow:0 40px 80px -40px #000}
+.wa-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#1f2c33}
+.wa-head .av{width:38px;height:38px;border-radius:50%;background:#2a3942;display:grid;place-items:center;font:700 15px/1 var(--f-body);color:#d1d7db}
+.wa-head b{display:block;font-size:16px}
+.wa-head small{color:#8696a0;font-size:13px}
+.wa-body{display:grid;gap:10px;padding:18px 14px 20px;background:#0b141a radial-gradient(rgba(255,255,255,.025) 1px,transparent 1px) 0 0/18px 18px}
+.msg{max-width:88%;padding:8px 10px 6px;border-radius:10px;font-size:15px;line-height:1.4;position:relative}
+.msg time{display:block;text-align:right;font-size:11px;color:rgba(233,237,239,.6);margin-top:3px}
+.msg.out{justify-self:end;background:#005c4b;border-top-right-radius:2px}
+.msg.in{justify-self:start;background:#202c33;border-top-left-radius:2px}
+.msg .lnk{color:#53bdeb;word-break:break-all}
+.preview{display:grid;grid-template-columns:64px 1fr;gap:10px;margin:-2px -4px 8px;padding:8px;border-radius:8px;background:rgba(0,0,0,.25)}
+.preview img{width:64px;height:64px;object-fit:cover;border-radius:6px}
+.preview b{font-size:14px;display:block}
+.preview small{color:rgba(233,237,239,.7);font-size:12px}
+.msg.anim{transform-origin:bottom right}
+.in.anim{transform-origin:bottom left}
+.wa.go .msg.anim{animation:msgin .5s cubic-bezier(.2,1.2,.4,1) both;animation-delay:var(--d)}
+@keyframes msgin{from{transform:translateY(10px) scale(.92)}to{transform:none}}
+.client .phone{width:min(290px,72vw)}
+.stamp{position:absolute;left:50%;bottom:16%;z-index:3;transform:translateX(-50%) rotate(-8deg);padding:10px 18px;border:3px solid var(--ok);border-radius:12px;color:var(--ok);background:rgba(4,30,20,.82);font:900 22px/1 var(--f-display);font-stretch:120%;letter-spacing:.04em;white-space:nowrap}
+.client-txt{display:grid;gap:18px;margin-top:28px;max-width:430px}
+.client-txt li{display:flex;gap:12px;color:var(--muted)}
+.client-txt ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.client-txt li svg{flex:0 0 22px;height:22px;color:var(--ok);margin-top:2px}
+.client-txt li b{color:var(--text)}
+
+/* ---------- calculadora ---------- */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.calc .box{padding:clamp(22px,3.5vw,36px);border-radius:var(--r);background:var(--panel);border:1px solid var(--line)}
+.field{display:grid;gap:10px;margin-bottom:26px}
+.field:last-child{margin-bottom:0}
+.field label{display:flex;justify-content:space-between;gap:12px;font-weight:600}
+.field output{font:700 18px/1 var(--f-mono);color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--teal) var(--fill,50%),#1d3b40 var(--fill,50%))}
+input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--teal) var(--fill,50%),#1d3b40 var(--fill,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:var(--gold);border:4px solid var(--ink);box-shadow:0 0 0 1px var(--gold)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:4px solid var(--ink)}
+.res{display:grid;gap:18px;align-content:start}
+.bars{display:grid;gap:14px}
+.bar{display:grid;gap:8px}
+.bar .row{display:flex;justify-content:space-between;gap:10px;font-size:15px;color:var(--muted)}
+.bar .row b{font:700 17px/1 var(--f-mono);color:var(--text);font-variant-numeric:tabular-nums}
+.bar .t{height:16px;border-radius:8px;background:#12292e;overflow:hidden}
+.bar .t i{display:block;height:100%;width:var(--w);border-radius:8px;background:#46666a;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.bar.up .t i{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.bar.up .row b{color:var(--gold)}
+.plus{padding:20px;border-radius:16px;background:rgba(247,196,72,.08);border:1px solid rgba(247,196,72,.35)}
+.plus small{display:block;color:var(--muted);font-size:14px}
+.plus strong{display:block;font:900 clamp(36px,5.4vw,52px)/1.05 var(--f-display);font-stretch:118%;color:var(--gold);font-variant-numeric:tabular-nums;margin-top:6px}
+.fine{font-size:13px;color:var(--muted)}
+
+/* ---------- depoimentos ---------- */
+.trail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px var(--gut) 18px;scrollbar-width:none;scroll-padding-inline:var(--gut)}
+.trail::-webkit-scrollbar{display:none}
+.wcard{flex:0 0 auto;scroll-snap-align:start;margin:0;display:grid;gap:10px;justify-items:center}
+.wshot{position:relative;height:min(calc(100svh - 190px),640px);aspect-ratio:9/19.5;border-radius:30px;overflow:hidden;background:#000;border:6px solid #1a2f33;box-shadow:0 0 0 1px rgba(160,230,235,.18),0 30px 60px -30px #000}
+.wshot img,.wshot video{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.wplay{position:absolute;inset:0;display:grid;place-items:center;border:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.4));cursor:pointer}
+.wplay span{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#1b1404;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.wplay svg{width:28px;height:28px;margin-left:4px}
+.wcard.on .wplay{display:none}
+.wlab{display:flex;align-items:center;gap:8px;font:600 12px/1.2 var(--f-mono);color:var(--ok);letter-spacing:.04em;text-transform:uppercase}
+.wlab svg{width:14px;height:14px}
+.tnav{display:flex;justify-content:center;align-items:center;gap:14px;color:var(--muted);font-size:14px}
+.tnav button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;display:grid;place-items:center}
+.tnav button:hover{border-color:var(--teal)}
+.tnav svg{width:20px;height:20px}
+
+
+/* ---------- planos ---------- */
+.toggle{display:inline-flex;padding:5px;border-radius:999px;background:var(--panel);border:1px solid var(--line);margin-inline:auto}
+.toggle button{min-height:46px;padding:0 22px;border-radius:999px;border:0;background:transparent;color:var(--muted);font:700 15px/1 var(--f-body);cursor:pointer}
+.toggle button[aria-pressed=true]{background:var(--text);color:var(--ink)}
+.toggle button em{font-style:normal;color:var(--ok);margin-left:6px}
+.toggle button[aria-pressed=true] em{color:#0a7a45}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,400px));justify-content:center;gap:18px;margin-top:32px}
+.plan{position:relative;display:grid;gap:18px;align-content:start;padding:30px;border-radius:26px;background:var(--panel);border:1px solid var(--line)}
+.plan.hi{background:linear-gradient(180deg,#123137,#0b1f23 60%);border-color:rgba(63,214,207,.55);box-shadow:0 30px 70px -40px rgba(63,214,207,.5)}
+.plan .who{color:var(--muted);font-size:15px}
+.plan h3{font-size:28px}
+.price{display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+.price .cur{font:700 20px/1 var(--f-display)}
+.price .val{font:900 clamp(48px,7vw,64px)/1 var(--f-display);font-stretch:115%}
+.price .per{color:var(--muted)}
+.price-sub{min-height:22px;font-size:14px;color:var(--ok)}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:16px}
+.plan li{display:flex;gap:10px}
+.plan li svg{flex:0 0 20px;height:20px;color:var(--teal);margin-top:2px}
+.plan .ribbon{position:absolute;top:-13px;left:30px;padding:7px 12px;border-radius:999px;background:var(--teal);color:#032321;font:700 12px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase}
+.pay{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin-top:24px;color:var(--muted);font-size:14px}
+.pay span{display:inline-flex;gap:8px;align-items:center}
+.pay svg{width:18px;height:18px;color:var(--teal)}
+.math{max-width:760px;margin:36px auto 0;padding:22px 24px;border-radius:18px;border:1px solid var(--line);display:flex;gap:18px;align-items:center}
+.math .big{font:900 34px/1 var(--f-display);font-stretch:118%;color:var(--gold);white-space:nowrap}
+.math p{color:var(--muted)}
+.math b{color:var(--text)}
+
+/* ---------- garantia ---------- */
+.guarantee{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,5vw,56px);align-items:center;padding:clamp(26px,5vw,48px);border-radius:28px;background:linear-gradient(120deg,#13262a,#0b1c20);border:1px solid var(--line)}
+.seal{width:clamp(130px,20vw,180px);aspect-ratio:1}
+@media (prefers-reduced-motion:no-preference){.seal .ring{animation:spin 26s linear infinite;transform-origin:50% 50%}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:820px;margin-inline:auto;display:grid;gap:12px}
+.faq details{border-radius:18px;background:var(--panel);border:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 22px;font:700 18px/1.3 var(--f-body)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:0 0 14px;height:14px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(45deg) translateY(-4px);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.faq details p{padding:0 22px 22px;color:var(--muted)}
+
+/* ---------- final ---------- */
+.final{text-align:center;overflow:hidden}
+.final h2{font-size:clamp(38px,8vw,84px);font-stretch:122%}
+.final .lede{margin:20px auto 32px}
+.final::before{content:"";position:absolute;inset:auto 0 -40% 0;height:80%;background:radial-gradient(50% 60% at 50% 100%,rgba(247,196,72,.18),transparent 70%);z-index:-1}
+footer{padding:36px 0 120px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center}
+
+/* barra fixa no celular */
+.dock{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:20px;background:rgba(8,24,28,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 20px 40px -10px #000;transform:translateY(140%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.dock.show{transform:none}
+.dock small{display:block;color:var(--muted);font-size:12px}
+.dock b{font:800 17px/1.1 var(--f-display);font-stretch:112%}
+.dock .btn{min-height:50px;padding:0 20px;font-size:16px}
+
+.toast{position:fixed;left:50%;top:18px;z-index:30;transform:translate(-50%,-160%);padding:14px 18px;border-radius:14px;background:#14302f;border:1px solid var(--teal);color:var(--text);font-size:15px;max-width:min(92vw,460px);transition:transform .35s,visibility .35s;visibility:hidden}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+/* ---------- celular ---------- */
+@media (max-width:900px){
+  .hero-grid,.pain,.steps,.client,.calc{grid-template-columns:1fr}
+  .hero{padding-top:92px}
+  .stage{margin-top:12px}
+  .pain .sec-head{position:static}
+  .steps .sticky{display:none}
+  .step{min-height:0;opacity:1;padding:8px 0 28px}
+  .step .num{color:var(--teal);-webkit-text-stroke:0}
+  .step .phone{display:block}
+  .feats{grid-template-columns:1fr}
+  .feat,.feat.wide{grid-column:auto;grid-template-columns:1fr 118px;padding:22px}
+  .client .phone{margin-inline:auto}
+  .plans{grid-template-columns:minmax(0,440px)}
+  .guarantee{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .math{flex-direction:column;text-align:center}
+  .dock{display:flex}
+  .top .mini{display:none}
+}
+@media (max-width:420px){
+  body{font-size:16px}
+  .feat,.feat.wide{grid-template-columns:1fr 96px}
+  .card-pain{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<main class="w">
- <div class="hero">
-  <h1>Feche mais orçamento <em>mostrando</em>, não só falando</h1>
-  <p class="sub">Mande orçamentos profissionais em 3D no WhatsApp do seu cliente em minutos, direto do celular.</p>
- </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.8.7 3 2.4 3.5 5.2"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-pix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 2.8 9.2 9.2-9.2 9.2L2.8 12z"/><path d="M7.5 12h9"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></symbol>
+</svg>
 
- <!-- ====== VSL ======
-  Player do VTurb (vídeo vertical). Para trocar de vídeo, cole aqui o novo código "JavaScript" do VTurb. -->
- <div class="vsl" id="vsl">
-  <vturb-smartplayer id="vid-6afbee19ce292bd10f0051be" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/b2dd1386-ac01-45b3-9dc5-89e5f052f76d/players/6afbee19ce292bd10f0051be/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
- </div>
- <p class="som">🔊 <b>Ligue o som</b> e assista até o final</p>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#topo"><img src="media/logo.png" alt="" width="38" height="38">Vidraceiro Pro</a>
+    <span class="mini">Projeto 3D · Orçamento · Link pro cliente</span>
+  </div>
+</header>
+
+<main id="topo">
+
+<!-- 1. PROMESSA -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Para quem trabalha com vidro e esquadria</span>
+      <h1 style="margin-top:18px">Mostre o projeto em 3D. <span class="l2">Feche na hora.</span></h1>
+      <p class="lede">Você coloca a medida, escolhe o modelo e o Vidraceiro Pro monta o projeto em 3D com o orçamento calculado. Manda o link no WhatsApp e o cliente vê como vai ficar antes de você instalar.</p>
+      <div class="ctas">
+        <a class="btn" href="#planos">Quero o Vidraceiro Pro <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn ghost" href="#como-funciona">Ver como funciona</a>
+      </div>
+      <div class="proof">
+        <span><svg><use href="#i-users"/></svg><b>+3 mil vidraceiros</b>&nbsp;usando</span>
+        <span><svg><use href="#i-phone"/></svg>Tudo pelo celular</span>
+        <span><svg><use href="#i-shield"/></svg>7 dias de garantia</span>
+      </div>
+    </div>
+    <div class="stage" aria-label="Projeto de box de canto girando em 3D no aplicativo">
+      <div class="dim h"><i class="l"></i><i class="a"></i><i class="b"></i><span>90 cm</span></div>
+      <div class="dim v"><i class="l"></i><i class="a"></i><i class="b"></i><span>190 cm</span></div>
+      <div class="phone"><div class="scr">
+        <video src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto"></video>
+      </div></div>
+      <div class="badge-float"><span class="dot"><svg><use href="#i-check"/></svg></span><span><b>Aprovado</b>pelo link, no WhatsApp</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-label="Modelos disponíveis">
+  <div class="track">
+    <span>Box de banheiro</span><span>Janela de correr</span><span>Porta pivotante</span><span><em>Esquadria de alumínio</em></span><span>Sacada</span><span>Guarda-corpo</span><span>Espelho</span><span>Fachada</span><span>Divisória</span><span><em>e muito mais</em></span>
+    <span>Box de banheiro</span><span>Janela de correr</span><span>Porta pivotante</span><span><em>Esquadria de alumínio</em></span><span>Sacada</span><span>Guarda-corpo</span><span>Espelho</span><span>Fachada</span><span>Divisória</span><span><em>e muito mais</em></span>
+  </div>
+</div>
+
+<!-- 2. DOR -->
+<section>
+  <div class="wrap pain">
+    <div class="sec-head">
+      <span class="tag">Se você é vidraceiro</span>
+      <h2>Você conhece <span class="gold">essa história.</span></h2>
+      <p class="lede">O serviço é bom, o preço é justo. Mesmo assim o orçamento não fecha. O problema não é você: é o jeito de mostrar.</p>
+    </div>
+    <div class="stack">
+      <article class="card-pain" style="--i:0"><span class="x"><svg><use href="#i-x"/></svg></span><span class="n">01 · À NOITE</span><h3>Orçamento no caderno</h3><p>Medida, desenho, conta de cabeça. Você passa a noite nisso e o cliente nem entende o rabisco.</p></article>
+      <article class="card-pain" style="--i:1"><span class="x"><svg><use href="#i-x"/></svg></span><span class="n">02 · NO WHATSAPP</span><h3>Visualizou e sumiu</h3><p>Manda o valor, aparecem os dois risquinhos azuis e mais nada. Nem um "vou pensar".</p></article>
+      <article class="card-pain" style="--i:2"><span class="x"><svg><use href="#i-x"/></svg></span><span class="n">03 · NA CONCORRÊNCIA</span><h3>Perdeu pra empresa grande</h3><p>Eles mandam o projeto bonito em 3D. Você manda um número. Adivinha quem fecha a obra?</p></article>
+      <article class="card-pain" style="--i:3"><span class="x"><svg><use href="#i-x"/></svg></span><span class="n">04 · NA OBRA</span><h3>Preço chutado</h3><p>Esqueceu um kit, uma ferragem, o deslocamento. O lucro some no meio da instalação.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ANTES x DEPOIS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;justify-items:center">
+      <span class="tag">Arraste pro lado</span>
+      <h2>Do caderno <span class="teal">pro 3D.</span></h2>
+      <p class="lede">O mesmo box frontal de 1,20 × 1,90 m. De um lado, o que o cliente recebe hoje. Do outro, o que ele recebe com o Vidraceiro Pro.</p>
+    </div>
+    <div class="ba" id="ba">
+      <img src="media/antes.jpg" alt="Orçamento de box desenhado à mão no caderno" width="720" height="960">
+      <img class="after" src="media/depois.jpg" alt="O mesmo box em 3D no Vidraceiro Pro, com medidas de 120 por 190 centímetros" width="720" height="960">
+      <span class="lbl l">Antes · caderno</span><span class="lbl r">Depois · 3D</span>
+      <div class="handle"></div>
+      <input type="range" min="0" max="100" value="50" id="ba-range" aria-label="Comparar antes e depois">
+    </div>
+    <div class="ba-cap"><span>Cliente imagina. <b>E desconfia.</b></span><span>Cliente vê. <b>E aprova.</b></span></div>
+  </div>
+</section>
+
+<!-- 4. COMO FUNCIONA -->
+<section id="como-funciona" style="background:linear-gradient(180deg,transparent,var(--panel) 18%,var(--panel) 82%,transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Como funciona</span>
+      <h2>Três passos. <span class="gold">Poucos minutos.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="sticky" aria-hidden="true">
+        <div class="phone"><div class="scr tall" id="sticky-scr">
+          <img class="poster" src="media/passo1.jpg" alt="">
+          <video class="on" data-step="0" src="media/passo1.mp4" muted loop playsinline preload="metadata"></video>
+          <video data-step="1" src="media/passo2.mp4" muted loop playsinline preload="none"></video>
+          <video data-step="2" src="media/passo3.mp4" muted loop playsinline preload="none"></video>
+        </div></div>
+      </div>
+      <div>
+        <div class="step on" data-step="0">
+          <span class="num">1</span>
+          <h3>Coloca a medida</h3>
+          <p>Largura, altura e quantas peças. Arrasta a régua ou digita. O desenho técnico sai sozinho, com cada vidro medido.</p>
+          <div class="phone"><div class="scr tall"><video data-auto src="media/passo1.mp4" poster="media/passo1.jpg" muted loop playsinline preload="none"></video></div></div>
+        </div>
+        <div class="step" data-step="1">
+          <span class="num">2</span>
+          <h3>Escolhe o modelo</h3>
+          <p>Box, janela, porta, sacada, guarda-corpo, espelho. Linha temperada ou esquadria de alumínio, cor do vidro e do kit, ferragem e muito mais.</p>
+          <div class="phone"><div class="scr tall"><video data-auto src="media/passo2.mp4" poster="media/passo2.jpg" muted loop playsinline preload="none"></video></div></div>
+        </div>
+        <div class="step" data-step="2">
+          <span class="num">3</span>
+          <h3>Manda o link</h3>
+          <p>O orçamento fica pronto com o projeto em 3D. Você copia a mensagem, manda no WhatsApp e o cliente abre no celular dele.</p>
+          <div class="phone"><div class="scr tall"><video data-auto src="media/passo3.mp4" poster="media/passo3.jpg" muted loop playsinline preload="none"></video></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MODELOS 3D -->
+<section class="models">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Passa o dedo</span>
+      <h2>Tudo que você instala, <span class="teal">em 3D.</span></h2>
+      <p class="lede">O cliente gira, abre a porta, troca a cor do vidro e vê o projeto no ambiente dele: banheiro, cozinha, varanda, fachada.</p>
+    </div>
+  </div>
+  <div class="rail" id="rail">
+    <article class="model"><div class="vid"><video data-auto src="media/c_box.mp4" poster="media/c_box.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Box de banheiro</b><span>4 folhas · 180 × 190 cm</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_janela.mp4" poster="media/c_janela.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Janela de correr</b><span>4 folhas · cada vidro medido</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_porta.mp4" poster="media/c_porta.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Porta de vidro</b><span>Stanley · 300 × 220 cm</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_sacada.mp4" poster="media/c_sacada.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Envidraçamento de sacada</b><span>360 cm · cenário varanda</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_guarda.mp4" poster="media/c_guarda.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Guarda-corpo</b><span>Escada · laminado ou temperado</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_espelho.mp4" poster="media/c_espelho.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Espelho</b><span>119,5 × 86,5 cm · bisotê e LED</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_fachada.mp4" poster="media/c_fachada.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Fachada de vidro</b><span>604 × 440 cm</span></div></article>
+    <article class="model"><div class="vid"><video data-auto src="media/c_canto.mp4" poster="media/c_canto.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Box de canto</b><span>100 × 90 × 190 cm</span></div></article>
+  </div>
+  <div class="rail-nav"><button type="button" id="prev" aria-label="Modelo anterior"><svg><use href="#i-left"/></svg></button><button type="button" id="next" aria-label="Próximo modelo"><svg><use href="#i-right"/></svg></button></div>
+</section>
+
+<!-- 6. FUNÇÕES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Muito além do 3D</span>
+      <h2>A vidraçaria inteira <span class="gold">no seu bolso.</span></h2>
+      <p class="lede">Do orçamento ao pedido pra temperadora, cada aba resolve uma dor do seu dia a dia.</p>
+    </div>
+    <div class="feats">
+      <article class="feat wide">
+        <div class="txt"><span class="k">Orçamento</span><h3>O preço sai calculado</h3><p>Vidro, kit, ferragem, deslocamento, desconto, prazo, validade e forma de pagamento. Você monta até opções diferentes pro cliente escolher.</p></div>
+        <div class="phone"><div class="scr tall"><video data-auto src="media/f_orcamento.mp4" poster="media/f_orcamento.jpg" muted loop playsinline preload="none"></video></div></div>
+      </article>
+      <article class="feat">
+        <div class="txt"><span class="k">Lucro</span><h3>Você sabe quanto ganha</h3><p>Custo do vidro, kit, insumos, reserva pra quebra e a sua margem, antes de passar o preço.</p></div>
+        <div class="phone"><div class="scr tall"><video data-auto src="media/f_lucro.mp4" poster="media/f_lucro.jpg" muted loop playsinline preload="none"></video></div></div>
+      </article>
+      <article class="feat">
+        <div class="txt"><span class="k">Temperadora</span><h3>Pedido do vidro pronto</h3><p>A medida de cada vidro já calculada pra mandar pra temperadora, sem refazer conta.</p></div>
+        <div class="phone"><div class="scr tall"><video data-auto src="media/f_temperadora.mp4" poster="media/f_temperadora.jpg" muted loop playsinline preload="none"></video></div></div>
+      </article>
+      <article class="feat">
+        <div class="txt"><span class="k">PDF</span><h3>Proposta com a sua marca</h3><p>Orçamento em PDF com a logo da sua vidraçaria, os projetos e o valor de cada opção.</p></div>
+        <div class="phone"><div class="scr tall"><video data-auto src="media/f_pdf.mp4" poster="media/f_pdf.jpg" muted loop playsinline preload="none"></video></div></div>
+      </article>
+      <article class="feat">
+        <div class="txt"><span class="k">Painel</span><h3>Nenhum orçamento esquecido</h3><p>Quanto está em aberto, quem não respondeu e quanto você fechou no mês, numa tela só.</p></div>
+        <div class="phone"><div class="scr tall"><video data-auto src="media/f_painel.mp4" poster="media/f_painel.jpg" muted loop playsinline preload="none"></video></div></div>
+      </article>
+      <article class="feat wide">
+        <div class="txt"><span class="k">Obras e serviços</span><h3>Da medição à instalação</h3><p>Agenda de medição e instalação, checklist da obra, fotos, pagamentos e serviços avulsos como película, troca de roldana e regulagem.</p></div>
+        <div class="phone"><div class="scr tall"><video data-auto src="media/f_obras.mp4" poster="media/f_obras.jpg" muted loop playsinline preload="none"></video></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 7. COMO O CLIENTE VÊ -->
+<section style="background:linear-gradient(180deg,transparent,var(--panel) 20%,var(--panel) 80%,transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Do lado do seu cliente</span>
+      <h2>Ele abre o link, gira <span class="gold">e aprova.</span></h2>
+    </div>
+    <div class="client">
+      <div>
+        <div class="wa" id="wa" aria-label="Exemplo de conversa no WhatsApp">
+          <div class="wa-head"><span class="av">SC</span><div><b>Sr. Carlos</b><small>online</small></div></div>
+          <div class="wa-body">
+            <div class="msg out anim" style="--d:.1s">
+              <div class="preview"><img src="media/depois.jpg" alt=""><div><b>Proposta para Carlos</b><small>Box frontal 2 folhas · Vidraçaria Boa Vista</small></div></div>
+              Olá, Sr. Carlos! Preparei o seu orçamento com o projeto em 3D. Abre o link pra girar e ver como vai ficar:<br><span class="lnk">vidraceiropro.online/proposta</span>
+              <time>14:02</time>
+            </div>
+            <div class="msg in anim" style="--d:.9s">Nossa! Dá até pra girar? É assim que vai ficar meu banheiro?<time>14:06</time></div>
+            <div class="msg in anim" style="--d:1.5s">Pode fazer. Fechado!<time>14:07</time></div>
+          </div>
+        </div>
+        <div class="client-txt">
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span><b>Sem baixar nada.</b> O cliente abre no navegador do celular.</span></li>
+            <li><svg><use href="#i-check"/></svg><span><b>Opções lado a lado.</b> Ele compara as opções que você montou e escolhe a dele.</span></li>
+            <li><svg><use href="#i-check"/></svg><span><b>Aprovação com um toque.</b> Ele escolhe a opção e aprova pelo link.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="phone" style="position:relative"><div class="scr tall">
+        <video data-auto src="media/cliente.mp4" poster="media/cliente.jpg" muted loop playsinline preload="none"></video>
+      </div><span class="stamp">APROVADO</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. DEPOIMENTOS -->
+<section id="depoimentos" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Quem já usa</span>
+      <h2>Vidraceiro falando <span class="teal">pra vidraceiro.</span></h2>
+      <p class="lede">Áudios e mensagens que chegaram no nosso WhatsApp, do jeito que chegaram. Toque pra ouvir.</p>
+    </div>
+    </div>
+  <div class="trail" id="trail">
+    <figure class="wcard">
+      <div class="wshot"><video src="media/wa_dr.mp4" poster="media/wa_dr.jpg" playsinline preload="none"></video><button type="button" class="wplay" aria-label="Ouvir o depoimento"><span><svg><use href="#i-play"/></svg></span></button></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Áudio real no WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><video src="media/wa_es.mp4" poster="media/wa_es.jpg" playsinline preload="none"></video><button type="button" class="wplay" aria-label="Ouvir o depoimento"><span><svg><use href="#i-play"/></svg></span></button></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Áudio real no WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><video src="media/wa_sc.mp4" poster="media/wa_sc.jpg" playsinline preload="none"></video><button type="button" class="wplay" aria-label="Ouvir o depoimento"><span><svg><use href="#i-play"/></svg></span></button></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Áudio real no WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><img src="media/wa_print1.jpg" alt="Conversa no WhatsApp: acabei de comprar, tô me divertindo fazendo orçamento, parabéns está ótimo" loading="lazy"></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Print real do WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><video src="media/wa_rp.mp4" poster="media/wa_rp.jpg" playsinline preload="none"></video><button type="button" class="wplay" aria-label="Ouvir o depoimento"><span><svg><use href="#i-play"/></svg></span></button></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Áudio real no WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><img src="media/wa_print3.jpg" alt="Conversa no WhatsApp: irmão, ficou top demais, cara. Vocês é diferenciado. Parabéns" loading="lazy"></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Print real do WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><video src="media/wa_g5.mp4" poster="media/wa_g5.jpg" playsinline preload="none"></video><button type="button" class="wplay" aria-label="Ouvir o depoimento"><span><svg><use href="#i-play"/></svg></span></button></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Áudio real no WhatsApp</figcaption>
+    </figure>
+    <figure class="wcard">
+      <div class="wshot"><img src="media/wa_print2.jpg" alt="Conversa no WhatsApp: muito top esse aplicativo, parabéns" loading="lazy"></div>
+      <figcaption class="wlab"><svg><use href="#i-check"/></svg>Print real do WhatsApp</figcaption>
+    </figure>
+  </div>
+  <div class="tnav"><button type="button" id="tprev" aria-label="Depoimento anterior"><svg><use href="#i-left"/></svg></button><span>Arraste pro lado</span><button type="button" id="tnext" aria-label="Próximo depoimento"><svg><use href="#i-right"/></svg></button></div>
+</section>
+
+<!-- 10. PLANOS -->
+<section id="planos" style="background:linear-gradient(180deg,transparent,var(--panel) 15%,var(--panel) 85%,transparent)">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;justify-items:center">
+      <span class="tag">Planos</span>
+      <h2>Comece hoje. <span class="gold">Feche o próximo em 3D.</span></h2>
+      <p class="lede">Os dois planos liberam todas as funções. Muda só quantos aparelhos usam a conta.</p>
+    </div>
+    <div style="display:flex"><div class="toggle" role="group" aria-label="Forma de cobrança">
+      <button type="button" data-cycle="mensal" aria-pressed="false">Mensal</button>
+      <button type="button" data-cycle="anual" aria-pressed="true">Anual <em>economize</em></button>
+    </div></div>
+    <div class="plans">
+      <article class="plan">
+        <div><h3>Individual</h3><p class="who">Pra quem toca a vidraçaria sozinho</p></div>
+        <div><div class="price"><span class="cur">R$</span><span class="val" data-m="89,90" data-a="66,58">66,58</span><span class="per">/mês</span></div><p class="price-sub" data-m="" data-a="R$ 799 por ano · economia de R$ 279,80">R$ 799 por ano · economia de R$ 279,80</p></div>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>Todos os projetos em 3D</li>
+          <li><svg><use href="#i-check"/></svg>Orçamento, lucro e PDF</li>
+          <li><svg><use href="#i-check"/></svg>Link pro cliente aprovar</li>
+          <li><svg><use href="#i-check"/></svg>Pedido pra temperadora</li>
+          <li><svg><use href="#i-check"/></svg>Suporte pelo WhatsApp</li>
+          <li><svg><use href="#i-check"/></svg>1 celular + 1 computador</li>
+        </ul>
+        <a class="btn block" data-plan="individual" href="#">Assinar o Individual</a>
+      </article>
+      <article class="plan hi">
+        <span class="ribbon">Pra vidraçaria com equipe</span>
+        <div><h3>Equipe</h3><p class="who">Você, o medidor e o instalador na mesma conta</p></div>
+        <div><div class="price"><span class="cur">R$</span><span class="val" data-m="119,90" data-a="91,58">91,58</span><span class="per">/mês</span></div><p class="price-sub" data-m="" data-a="R$ 1.099 por ano · economia de R$ 339,80">R$ 1.099 por ano · economia de R$ 339,80</p></div>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>Tudo do Individual</li>
+                    <li><svg><use href="#i-check"/></svg>Celulares e computadores sem limite</li>
+          <li><svg><use href="#i-check"/></svg>Ideal pra quem tem medidor e instalador</li>
+        </ul>
+        <a class="btn block" data-plan="equipe" href="#">Assinar o Equipe</a>
+      </article>
+    </div>
+    <div class="pay"><span><svg><use href="#i-lock"/></svg>Pagamento seguro</span><span><svg><use href="#i-card"/></svg>Cartão de crédito</span><span><svg><use href="#i-pix"/></svg>Pix</span><span><svg><use href="#i-check"/></svg>Acesso na hora, por e-mail</span></div>
+    <div class="math"><span class="big">1 box</span><p>Um box de banheiro custa pro seu cliente entre <b>R$ 1.200 e R$ 2.300</b>. <b>Um único box a mais no ano</b> já paga o plano anual inteiro.</p></div>
+  </div>
+</section>
+
+<!-- 11. GARANTIA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="guarantee">
+      <svg class="seal" viewBox="0 0 200 200" role="img" aria-label="Selo de garantia de 7 dias">
+        <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+        <circle cx="100" cy="100" r="96" fill="none" stroke="#f7c448" stroke-width="2"/>
+        <g class="ring"><text font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" letter-spacing="3.2" fill="#f7c448"><textPath href="#circ">GARANTIA INCONDICIONAL · RISCO ZERO · </textPath></text></g>
+        <circle cx="100" cy="100" r="60" fill="#f7c448"/>
+        <text x="100" y="104" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="52" fill="#1b1404">7</text>
+        <text x="100" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="14" fill="#1b1404">DIAS</text>
+      </svg>
+      <div style="display:grid;gap:12px">
+        <h2 style="font-size:clamp(28px,4.6vw,44px)">Use 7 dias. <span class="gold">Se não gostar, devolvemos tudo.</span></h2>
+        <p class="lede">Assina, monta seus projetos, manda pros seus clientes. Se em 7 dias achar que não vale, pede o reembolso e recebe 100% do valor de volta. Sem pergunta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. FAQ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;justify-items:center"><span class="tag">Dúvidas</span><h2>Perguntas que todo vidraceiro faz</h2></div>
+    <div class="faq">
+      <details><summary>Preciso saber mexer em programa de computador?</summary><p>Não. Se você usa WhatsApp, usa o Vidraceiro Pro. É tudo no celular: coloca a medida, escolhe o modelo e o app faz o resto. E tem aula de como usar dentro do app.</p></details>
+      <details><summary>Funciona pra esquadria de alumínio?</summary><p>Sim. Em cada projeto você escolhe linha temperada ou esquadria de alumínio, com as linhas mais usadas, como Linha 25, Suprema e Gold.</p></details>
+      <details><summary>O meu cliente precisa baixar alguma coisa?</summary><p>Não. Ele recebe um link no WhatsApp, abre no celular, gira o projeto em 3D e aprova ali mesmo.</p></details>
+      <details><summary>Funciona no celular e no computador?</summary><p>Sim, nos dois. No plano Individual vale 1 celular e 1 computador. No plano Equipe, aparelhos sem limite.</p></details>
+      <details><summary>Como recebo o acesso depois de pagar?</summary><p>Na hora. Você recebe no e-mail o link pra criar sua senha e já começa a usar.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Pede o reembolso nesse prazo e recebe todo o valor de volta.</p></details>
+      <details><summary>Tem suporte?</summary><p>Tem. Pelo WhatsApp, direto no botão de suporte do app, e pelo e-mail suportevidraceiropro@gmail.com.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 13. FINAL -->
+<section class="final">
+  <div class="wrap">
+    <span class="tag">Última pergunta</span>
+    <h2 style="margin-top:18px">Seu concorrente já manda em 3D. <span class="gold">E você?</span></h2>
+    <p class="lede">O próximo orçamento que você mandar pode ser o primeiro que o cliente aprova na hora.</p>
+    <a class="btn" href="#planos">Quero o Vidraceiro Pro <svg><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
 
 </main>
 
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#topo"><img src="media/logo.png" alt="" width="38" height="38">Vidraceiro Pro</a>
+    <span>Suporte: suportevidraceiropro@gmail.com</span>
+    <span>© 2026 Vidraceiro Pro</span>
+  </div>
+</footer>
 
+<div class="dock" id="dock" aria-hidden="true">
+  <div><small>Vidraceiro Pro</small><b>a partir de R$ 66,58/mês</b></div>
+  <a class="btn" href="#planos" tabindex="-1">Assinar</a>
+</div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-/* Único botão da página: o do VTurb (aparece no pitch; texto e link ficam no painel do VTurb).
-   Aqui só garantimos o checkout=1 (para o pixel da Utmify contar o IC) e, quando o link é do app,
-   as marcações do anúncio (utm). Link de WhatsApp não leva as utm: a mensagem pronta fica limpa. */
+/* ===== Links de pagamento da Stripe: troque o "#" pelo link de cada plano ===== */
+const CHECKOUT = {
+  individual: { mensal: "#", anual: "#" },
+  equipe:     { mensal: "#", anual: "#" }
+};
+
 (function(){
- var q=location.search.replace(/^\?/,'');
- function utm(a){if(a.dataset.utm)return;a.dataset.utm='1';var wa=/(^|\.)(wa\.me|whatsapp\.com)$/i.test(a.hostname||'');
-  if(a.href.indexOf('checkout=')<0)a.href+=(a.href.indexOf('?')<0?'?':'&')+'checkout=1';if(q&&!wa)a.href+='&'+q;}
- if('MutationObserver' in window){new MutationObserver(function(){[].forEach.call(document.querySelectorAll('.smartplayer-anchor-button'),utm);}).observe(document.body,{childList:true,subtree:true});}
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cycle = 'anual';
+
+  /* vídeos tocam só quando aparecem na tela */
+  const vids = document.querySelectorAll('video[data-auto]');
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; if (!reduce) v.play().catch(()=>{}); }
+    else v.pause();
+  }), {rootMargin:'120px 0px'});
+  vids.forEach(v => vio.observe(v));
+  const hero = document.querySelector('.hero video');
+  if (reduce && hero) { hero.removeAttribute('autoplay'); hero.pause(); }
+
+  /* antes x depois */
+  const ba = document.getElementById('ba'), br = document.getElementById('ba-range');
+  const setBA = v => ba.style.setProperty('--pos', v + '%');
+  br.addEventListener('input', () => setBA(br.value));
+  if (!reduce) {
+    const bio = new IntersectionObserver(es => { if (es[0].isIntersecting) { bio.disconnect();
+      let t0 = null; const dur = 1600;
+      const step = ts => { t0 ??= ts; const k = Math.min(1,(ts-t0)/dur); const v = 50 + Math.sin(k*Math.PI*2)*-28*(1-k); br.value = v; setBA(v); if (k<1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }}, {threshold:.6});
+    bio.observe(ba);
+  }
+
+  /* passos com celular fixo (computador) */
+  const steps = document.querySelectorAll('.step'), svids = document.querySelectorAll('#sticky-scr video');
+  const desk = matchMedia('(min-width: 901px)');
+  const setStep = i => {
+    steps.forEach((s,k) => s.classList.toggle('on', k===i));
+    svids.forEach((v,k) => { const on = k===i; v.classList.toggle('on', on);
+      if (on) { v.preload='auto'; if (!reduce) v.play().catch(()=>{}); } else v.pause(); });
+  };
+  const sio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && desk.matches) setStep(+e.target.dataset.step); }), {rootMargin:'-45% 0px -45% 0px'});
+  steps.forEach(s => sio.observe(s));
+
+  /* carrossel com efeito de profundidade */
+  const rail = document.getElementById('rail'), cards = [...rail.children];
+  let raf = 0;
+  const depth = () => { raf = 0; const c = rail.getBoundingClientRect(), mid = c.left + c.width/2;
+    cards.forEach(el => { const r = el.getBoundingClientRect(); const d = ((r.left + r.width/2) - mid) / c.width;
+      const a = Math.max(-1, Math.min(1, d*1.6));
+      el.style.setProperty('--s', (1 - Math.min(.12, Math.abs(a)*.12)).toFixed(3));
+      el.style.setProperty('--ry', reduce ? '0deg' : (-a*14).toFixed(1) + 'deg');
+      el.classList.toggle('mid', Math.abs(d) < .12); }); };
+  rail.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(depth); }, {passive:true});
+  addEventListener('resize', depth); depth();
+  const go = dir => rail.scrollBy({left: dir * (cards[0].offsetWidth + 18), behavior: reduce ? 'auto' : 'smooth'});
+  document.getElementById('prev').onclick = () => go(-1);
+  document.getElementById('next').onclick = () => go(1);
+
+  /* conversa do WhatsApp */
+  const wa = document.getElementById('wa');
+  new IntersectionObserver((es,o) => { if (es[0].isIntersecting) { wa.classList.add('go'); o.disconnect(); } }, {threshold:.5}).observe(wa);
+
+  const toast = document.getElementById('toast'); let tt;
+  const say = m => { toast.textContent = m; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 3200); };
+  /* depoimentos: navegação */
+  const trail = document.getElementById('trail');
+  const tgo = d => trail.scrollBy({left: d * (trail.querySelector('.wcard').offsetWidth + 16), behavior: reduce ? 'auto' : 'smooth'});
+  document.getElementById('tprev').onclick = () => tgo(-1);
+  document.getElementById('tnext').onclick = () => tgo(1);
+  /* depoimentos: telas do WhatsApp com áudio */
+  let playing = null;
+  document.querySelectorAll('.wcard video').forEach(v => {
+    const card = v.closest('.wcard'), btn = card.querySelector('.wplay');
+    btn.addEventListener('click', () => {
+      if (playing && playing !== v) playing.pause();
+      playing = v; v.controls = true; card.classList.add('on');
+      v.play().catch(() => say('Não deu pra tocar aqui. Toque de novo.'));
+    });
+    v.addEventListener('pause', () => { if (v.ended) { card.classList.remove('on'); v.controls = false; v.currentTime = 0; } });
+    v.addEventListener('play', () => { if (playing && playing !== v) playing.pause(); playing = v; });
+  });
+
+  /* planos mensal / anual */
+  const tbtn = document.querySelectorAll('.toggle button');
+  const setCycle = cy => { cycle = cy;
+    tbtn.forEach(b => b.setAttribute('aria-pressed', b.dataset.cycle===cy));
+    document.querySelectorAll('[data-m]').forEach(el => el.textContent = cy==='anual' ? el.dataset.a : el.dataset.m);
+  };
+  tbtn.forEach(b => b.onclick = () => setCycle(b.dataset.cycle));
+
+  /* botões de compra */
+  document.querySelectorAll('[data-plan]').forEach(a => a.addEventListener('click', e => {
+    const url = CHECKOUT[a.dataset.plan][cycle];
+    if (!url || url === '#') { e.preventDefault(); say('Rascunho: o link de pagamento da Stripe deste plano ainda não foi colocado.'); return; }
+    /* checkout=1 pro pixel da Utmify contar o início de compra, e as UTMs do anúncio */
+    const q = location.search.replace(/^\?/, '');
+    let u = url + (url.indexOf('?') < 0 ? '?' : '&') + 'checkout=1';
+    if (q) u += '&' + q;
+    a.href = u;
+  }));
+
+  /* barra fixa no celular: aparece depois do topo, some nos planos */
+  const dock = document.getElementById('dock');
+  let pastHero = false, onPlans = false;
+  const upd = () => dock.classList.toggle('show', pastHero && !onPlans);
+  new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }).observe(document.querySelector('.hero'));
+  new IntersectionObserver(es => { onPlans = es[0].isIntersecting; upd(); }, {threshold:.15}).observe(document.getElementById('planos'));
 })();
 </script>
 </body>
