@@ -35,7 +35,8 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+html,body{overscroll-behavior-x:none}
 body{margin:0;background:var(--ink);color:var(--text);font:400 17px/1.55 var(--f-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img,video{max-width:100%;display:block}
 a{color:inherit}
@@ -175,9 +176,10 @@ section{position:relative;padding:clamp(72px,11vw,128px) 0}
 
 /* ---------- carrossel 3D ---------- */
 .models{overflow:hidden}
-.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px calc(50% - 130px) 30px;scrollbar-width:none;perspective:1200px}
-.rail::-webkit-scrollbar{display:none}
-.model{flex:0 0 260px;scroll-snap-align:center;border-radius:var(--r);overflow:hidden;background:var(--panel);border:1px solid var(--line);transform:scale(var(--s,1)) rotateY(var(--ry,0deg));transition:transform .15s linear,border-color .3s;will-change:transform}
+.rail{width:min(1160px,100% - var(--gut)*2);margin-inline:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:6px 0 10px}
+
+.model{border-radius:var(--r);overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+@media (max-width:900px){.rail{grid-template-columns:repeat(2,1fr);gap:12px}.model .cap{padding:10px 12px 12px}.model .cap b{font-size:15px}.model .cap span{font-size:11px}}
 .model.mid{border-color:rgba(63,214,207,.6)}
 .model .vid{aspect-ratio:9/16;background:#0a1a1d}
 .model video{width:100%;height:100%;object-fit:cover}
@@ -456,25 +458,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   </div>
 </section>
 
-<!-- 3. ANTES x DEPOIS -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head" style="text-align:center;justify-items:center">
-      <span class="tag">Arraste pro lado</span>
-      <h2>Do caderno <span class="teal">pro 3D.</span></h2>
-      <p class="lede">O mesmo box frontal de 1,20 × 1,90 m. De um lado, o que o cliente recebe hoje. Do outro, o que ele recebe com o Vidraceiro Pro.</p>
-    </div>
-    <div class="ba" id="ba">
-      <img src="media/antes.jpg" alt="Orçamento de box desenhado à mão no caderno" width="720" height="960">
-      <img class="after" src="media/depois.jpg" alt="O mesmo box em 3D no Vidraceiro Pro, com medidas de 120 por 190 centímetros" width="720" height="960">
-      <span class="lbl l">Antes · caderno</span><span class="lbl r">Depois · 3D</span>
-      <div class="handle"></div>
-      <input type="range" min="0" max="100" value="50" id="ba-range" aria-label="Comparar antes e depois">
-    </div>
-    <div class="ba-cap"><span>Cliente imagina. <b>E desconfia.</b></span><span>Cliente vê. <b>E aprova.</b></span></div>
-  </div>
-</section>
-
 <!-- 4. COMO FUNCIONA -->
 <section id="como-funciona" style="background:linear-gradient(180deg,transparent,var(--panel) 18%,var(--panel) 82%,transparent)">
   <div class="wrap">
@@ -519,7 +502,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 <section class="models">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">Passa o dedo</span>
+      <span class="tag">Modelos em 3D</span>
       <h2>Tudo que você instala, <span class="teal">em 3D.</span></h2>
       <p class="lede">O cliente gira, abre a porta, troca a cor do vidro e vê o projeto no ambiente dele: banheiro, cozinha, varanda, fachada.</p>
     </div>
@@ -534,7 +517,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
     <article class="model"><div class="vid"><video data-auto src="media/c_fachada.mp4" poster="media/c_fachada.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Fachada de vidro</b><span>604 × 440 cm</span></div></article>
     <article class="model"><div class="vid"><video data-auto src="media/c_canto.mp4" poster="media/c_canto.jpg" muted loop playsinline preload="none"></video></div><div class="cap"><b>Box de canto</b><span>100 × 90 × 190 cm</span></div></article>
   </div>
-  <div class="rail-nav"><button type="button" id="prev" aria-label="Modelo anterior"><svg><use href="#i-left"/></svg></button><button type="button" id="next" aria-label="Próximo modelo"><svg><use href="#i-right"/></svg></button></div>
 </section>
 
 <!-- 6. FUNÇÕES -->
@@ -796,19 +778,6 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
   const hero = document.querySelector('.hero video');
   if (reduce && hero) { hero.removeAttribute('autoplay'); hero.pause(); }
 
-  /* antes x depois */
-  const ba = document.getElementById('ba'), br = document.getElementById('ba-range');
-  const setBA = v => ba.style.setProperty('--pos', v + '%');
-  br.addEventListener('input', () => setBA(br.value));
-  if (!reduce) {
-    const bio = new IntersectionObserver(es => { if (es[0].isIntersecting) { bio.disconnect();
-      let t0 = null; const dur = 1600;
-      const step = ts => { t0 ??= ts; const k = Math.min(1,(ts-t0)/dur); const v = 50 + Math.sin(k*Math.PI*2)*-28*(1-k); br.value = v; setBA(v); if (k<1) requestAnimationFrame(step); };
-      requestAnimationFrame(step);
-    }}, {threshold:.6});
-    bio.observe(ba);
-  }
-
   /* passos com celular fixo (computador) */
   const steps = document.querySelectorAll('.step'), svids = document.querySelectorAll('#sticky-scr video');
   const desk = matchMedia('(min-width: 901px)');
@@ -819,21 +788,6 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
   };
   const sio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && desk.matches) setStep(+e.target.dataset.step); }), {rootMargin:'-45% 0px -45% 0px'});
   steps.forEach(s => sio.observe(s));
-
-  /* carrossel com efeito de profundidade */
-  const rail = document.getElementById('rail'), cards = [...rail.children];
-  let raf = 0;
-  const depth = () => { raf = 0; const c = rail.getBoundingClientRect(), mid = c.left + c.width/2;
-    cards.forEach(el => { const r = el.getBoundingClientRect(); const d = ((r.left + r.width/2) - mid) / c.width;
-      const a = Math.max(-1, Math.min(1, d*1.6));
-      el.style.setProperty('--s', (1 - Math.min(.12, Math.abs(a)*.12)).toFixed(3));
-      el.style.setProperty('--ry', reduce ? '0deg' : (-a*14).toFixed(1) + 'deg');
-      el.classList.toggle('mid', Math.abs(d) < .12); }); };
-  rail.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(depth); }, {passive:true});
-  addEventListener('resize', depth); depth();
-  const go = dir => rail.scrollBy({left: dir * (cards[0].offsetWidth + 18), behavior: reduce ? 'auto' : 'smooth'});
-  document.getElementById('prev').onclick = () => go(-1);
-  document.getElementById('next').onclick = () => go(1);
 
   /* conversa do WhatsApp */
   const wa = document.getElementById('wa');
