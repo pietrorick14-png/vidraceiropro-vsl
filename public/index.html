@@ -382,6 +382,28 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   .card-pain{padding:22px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- iPhone: nada passa da largura da tela ---------- */
+html,body{max-width:100%}
+img,video,svg,iframe{max-width:100%}
+.sec-head>*,.hero-grid>*,.pain>*,.stack>*,.steps>*,.step>*,.rail>*,.feats>*,.feat>*,.feat .txt>*,.client>*,.wa-body>*,.preview>*,.client-txt>*,.client-txt ul>*,.star>*,.star-txt>*,.plans>*,.plan>*,.plan ul>*,.guarantee>*,.faq>*{min-width:0}
+.wa{width:100%}
+.wa-body,.plan,.client-txt ul,.plan ul,.faq,.star-txt,.stack{grid-template-columns:minmax(0,1fr)}
+.msg,.client-txt li span,.plan li,.faq *{overflow-wrap:anywhere}
+.pay{flex-wrap:wrap;justify-content:center;row-gap:10px}
+.client-txt li>*,.plan li>*,.price>*{min-width:0}
+.plan .btn{width:100%;max-width:100%;white-space:normal;text-align:center;line-height:1.15}
+@media (max-width:900px){
+  .hero-grid,.pain,.steps,.client,.calc,.feats,.guarantee,.star{grid-template-columns:minmax(0,1fr)}
+  .plans{grid-template-columns:minmax(0,440px)}
+  .feat,.feat.wide{grid-template-columns:minmax(0,1fr) 118px}
+  .wrap{width:auto;margin-inline:var(--gut)}
+  .rail{width:auto;margin-inline:var(--gut);grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){
+  .feat,.feat.wide{grid-template-columns:minmax(0,1fr) 96px}
+  .plan{padding:24px 20px}
+}
 </style>
 </head>
 <body>
