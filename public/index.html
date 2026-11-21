@@ -262,6 +262,11 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 /* ---------- depoimentos ---------- */
 .star{display:grid;grid-template-columns:auto 1fr;gap:clamp(22px,5vw,64px);align-items:center;padding:clamp(20px,4vw,40px);border-radius:28px;background:linear-gradient(135deg,rgba(247,196,72,.13),rgba(63,214,207,.06) 60%,transparent),var(--panel);border:1.5px solid rgba(247,196,72,.5);box-shadow:0 40px 80px -50px rgba(247,196,72,.45);margin-bottom:28px}
 .star .wshot{border-color:rgba(247,196,72,.55)}
+.star-play{background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.55))}
+.star-play span{animation:pulse 1.4s ease-in-out infinite}
+.star-cta{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);white-space:nowrap;font:800 16px/1 var(--f-body);font-style:normal;color:#1b1404;background:var(--gold);padding:12px 18px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.45);animation:blink 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(247,196,72,.7),0 12px 30px rgba(0,0,0,.5)}50%{transform:scale(1.12);box-shadow:0 0 0 22px rgba(247,196,72,0),0 12px 30px rgba(0,0,0,.5)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.55}}
 .star-txt{display:grid;gap:12px;max-width:520px}
 .star-tag{justify-self:start;padding:8px 14px;border-radius:999px;background:var(--gold);color:#1b1404;font:800 13px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase}
 .star-name{font-size:clamp(34px,5vw,52px);font-stretch:120%}
@@ -604,7 +609,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   <div class="wrap">
     <article class="star">
       <figure class="wcard star-phone">
-        <div class="wshot"><video src="media/wa_g5.mp4" poster="media/wa_g5.jpg" playsinline preload="none"></video><button type="button" class="wplay" aria-label="Ouvir o depoimento da G5 Vidros"><span><svg><use href="#i-play"/></svg></span></button></div>
+        <div class="wshot"><video src="media/wa_g5.mp4" poster="media/wa_g5.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="wplay star-play" aria-label="Ouvir o depoimento da G5 Vidros com som"><span><svg><use href="#i-play"/></svg></span><em class="star-cta">🔊 Toque pra ouvir o áudio</em></button></div>
         <figcaption class="wlab"><svg><use href="#i-check"/></svg>Áudio real no WhatsApp</figcaption>
       </figure>
       <div class="star-txt">
@@ -802,15 +807,22 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
   document.getElementById('tnext').onclick = () => tgo(1);
   /* depoimentos: telas do WhatsApp com áudio */
   let playing = null;
+  /* destaque: roda sem som quando aparece na tela, pra mostrar que é vídeo; o toque liga o som do começo */
+  const sv = document.querySelector('.star video');
+  if (sv) new IntersectionObserver(es => es.forEach(e => {
+    if (!sv.muted) return;
+    if (e.isIntersecting) sv.play().catch(()=>{}); else sv.pause();
+  }), {threshold: .4}).observe(sv);
   document.querySelectorAll('.wcard video').forEach(v => {
     const card = v.closest('.wcard'), btn = card.querySelector('.wplay');
     btn.addEventListener('click', () => {
       if (playing && playing !== v) playing.pause();
+      if (v.muted) { v.muted = false; v.loop = false; v.currentTime = 0; }
       playing = v; v.controls = true; card.classList.add('on');
       v.play().catch(() => say('Não deu pra tocar aqui. Toque de novo.'));
     });
     v.addEventListener('pause', () => { if (v.ended) { card.classList.remove('on'); v.controls = false; v.currentTime = 0; } });
-    v.addEventListener('play', () => { if (playing && playing !== v) playing.pause(); playing = v; });
+    v.addEventListener('play', () => { if (v.muted) return; if (playing && playing !== v) playing.pause(); playing = v; });
   });
 
   /* planos mensal / anual */
