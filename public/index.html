@@ -295,6 +295,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .plan li{display:flex;gap:10px}
 .plan li svg{flex:0 0 20px;height:20px;color:var(--teal);margin-top:2px}
 .plan .ribbon{position:absolute;top:-13px;left:30px;padding:7px 12px;border-radius:999px;background:var(--teal);color:#032321;font:700 12px/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase}
+.pixlink{justify-self:center;border:0;background:none;color:var(--muted);font:600 14px/1 var(--f-body);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px}
+.pixlink:hover{color:var(--text)}
 .pay{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin-top:24px;color:var(--muted);font-size:14px}
 .pay span{display:inline-flex;gap:8px;align-items:center}
 .pay svg{width:18px;height:18px;color:var(--teal)}
@@ -651,13 +653,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <p class="lede">Os dois planos liberam todas as funções. Muda só quantos aparelhos usam a conta.</p>
     </div>
     <div style="display:flex"><div class="toggle" role="group" aria-label="Forma de cobrança">
-      <button type="button" data-cycle="mensal" aria-pressed="false">Mensal</button>
-      <button type="button" data-cycle="anual" aria-pressed="true">Anual <em>economize</em></button>
+      <button type="button" data-cycle="mensal" aria-pressed="true">Mensal</button>
+      <button type="button" data-cycle="anual" aria-pressed="false">Anual <em>economize</em></button>
     </div></div>
     <div class="plans">
       <article class="plan">
         <div><h3>Individual</h3><p class="who">Pra quem toca a vidraçaria sozinho</p></div>
-        <div><div class="price"><span class="cur">R$</span><span class="val" data-m="89,90" data-a="66,58">66,58</span><span class="per">/mês</span></div><p class="price-sub" data-m="" data-a="R$ 799 por ano · economia de R$ 279,80">R$ 799 por ano · economia de R$ 279,80</p></div>
+        <div><div class="price"><span class="cur">R$</span><span class="val" data-m="89,90" data-a="66,58">89,90</span><span class="per">/mês</span></div><p class="price-sub" data-m="" data-a="R$ 799 por ano · economia de R$ 279,80"></p></div>
         <ul>
           <li><svg><use href="#i-check"/></svg>Todos os projetos em 3D</li>
           <li><svg><use href="#i-check"/></svg>Orçamento, lucro e PDF</li>
@@ -666,18 +668,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
           <li><svg><use href="#i-check"/></svg>Suporte pelo WhatsApp</li>
           <li><svg><use href="#i-check"/></svg>1 celular + 1 computador</li>
         </ul>
-        <a class="btn block" data-plan="individual" href="#">Assinar o Individual</a>
+        <button type="button" class="btn block" data-plan="individual" data-metodo="cartao">Assinar o Individual</button>
+        <button type="button" class="pixlink" data-plan="individual" data-metodo="pix" data-m="Prefiro pagar no Pix · R$ 99,90/mês" data-a="Prefiro pagar no Pix · R$ 799 à vista">Prefiro pagar no Pix · R$ 99,90/mês</button>
       </article>
       <article class="plan hi">
         <span class="ribbon">Pra vidraçaria com equipe</span>
         <div><h3>Equipe</h3><p class="who">Você, o medidor e o instalador na mesma conta</p></div>
-        <div><div class="price"><span class="cur">R$</span><span class="val" data-m="119,90" data-a="91,58">91,58</span><span class="per">/mês</span></div><p class="price-sub" data-m="" data-a="R$ 1.099 por ano · economia de R$ 339,80">R$ 1.099 por ano · economia de R$ 339,80</p></div>
+        <div><div class="price"><span class="cur">R$</span><span class="val" data-m="119,90" data-a="91,58">119,90</span><span class="per">/mês</span></div><p class="price-sub" data-m="" data-a="R$ 1.099 por ano · economia de R$ 339,80"></p></div>
         <ul>
           <li><svg><use href="#i-check"/></svg>Tudo do Individual</li>
                     <li><svg><use href="#i-check"/></svg>Celulares e computadores sem limite</li>
           <li><svg><use href="#i-check"/></svg>Ideal pra quem tem medidor e instalador</li>
         </ul>
-        <a class="btn block" data-plan="equipe" href="#">Assinar o Equipe</a>
+        <button type="button" class="btn block" data-plan="equipe" data-metodo="cartao">Assinar o Equipe</button>
+        <button type="button" class="pixlink" data-plan="equipe" data-metodo="pix" data-m="Prefiro pagar no Pix · R$ 129,90/mês" data-a="Prefiro pagar no Pix · R$ 1.099 à vista">Prefiro pagar no Pix · R$ 129,90/mês</button>
       </article>
     </div>
     <div class="pay"><span><svg><use href="#i-lock"/></svg>Pagamento seguro</span><span><svg><use href="#i-card"/></svg>Cartão de crédito</span><span><svg><use href="#i-pix"/></svg>Pix</span><span><svg><use href="#i-check"/></svg>Acesso na hora, por e-mail</span></div>
@@ -742,21 +746,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 </footer>
 
 <div class="dock" id="dock" aria-hidden="true">
-  <div><small>Vidraceiro Pro</small><b>a partir de R$ 66,58/mês</b></div>
+  <div><small>Vidraceiro Pro</small><b>a partir de R$ 89,90/mês</b></div>
   <a class="btn" href="#planos" tabindex="-1">Assinar</a>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-/* ===== Links de pagamento da Stripe: troque o "#" pelo link de cada plano ===== */
-const CHECKOUT = {
-  individual: { mensal: "#", anual: "#" },
-  equipe:     { mensal: "#", anual: "#" }
-};
+/* ===== Pagamento: mesma função da página de planos (Supabase "compra-site" cria o checkout da Stripe do Vidraceiro Pro) ===== */
+const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', KEY = 'sb_publishable_ufkP6XFtMjHhZoTOtbL-hg_Z9sAQmWT';
 
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cycle = 'anual';
+  let cycle = 'mensal';
 
   /* vídeos tocam só quando aparecem na tela */
   const vids = document.querySelectorAll('video[data-auto]');
@@ -840,15 +841,19 @@ const CHECKOUT = {
   };
   tbtn.forEach(b => b.onclick = () => setCycle(b.dataset.cycle));
 
-  /* botões de compra */
-  document.querySelectorAll('[data-plan]').forEach(a => a.addEventListener('click', e => {
-    const url = CHECKOUT[a.dataset.plan][cycle];
-    if (!url || url === '#') { e.preventDefault(); say('Rascunho: o link de pagamento da Stripe deste plano ainda não foi colocado.'); return; }
-    /* checkout=1 pro pixel da Utmify contar o início de compra, e as UTMs do anúncio */
-    const q = location.search.replace(/^\?/, '');
-    let u = url + (url.indexOf('?') < 0 ? '?' : '&') + 'checkout=1';
-    if (q) u += '&' + q;
-    a.href = u;
+  /* botões de compra: abre o checkout da Stripe do Vidraceiro Pro */
+  const qs = new URLSearchParams(location.search);
+  const qf = qs.get('funil'); const FUNIL = /^[a-z0-9_-]{2,20}$/i.test(qf || '') ? qf : 'pagina';
+  document.querySelectorAll('[data-plan]').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.ab) return;
+    const utm = {};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck'].forEach(k => { const v = qs.get(k); if (v) utm[k] = v; });
+    const t = b.innerHTML; b.dataset.ab = '1'; b.innerHTML = 'Abrindo o pagamento…';
+    const volta = () => { b.innerHTML = t; delete b.dataset.ab; };
+    fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY },
+      body: JSON.stringify({ plano: b.dataset.plan, metodo: b.dataset.metodo || 'cartao', periodo: cycle, utm, funil: FUNIL }) })
+      .then(r => r.json()).then(j => { if (j && j.url) { location.href = j.url; setTimeout(volta, 8000); } else { volta(); say('Não deu pra abrir o pagamento. Tente de novo.'); } })
+      .catch(() => { volta(); say('Sem conexão. Tente de novo.'); });
   }));
 
   /* barra fixa no celular: aparece depois do topo, some nos planos */
