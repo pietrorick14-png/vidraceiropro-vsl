@@ -840,6 +840,7 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
     if (b.dataset.ab) return;
     const utm = {};
     ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck'].forEach(k => { const v = qs.get(k); if (v) utm[k] = v; });
+    if (!utm.sck) utm.sck = 'pagina-vendas';   /* marca a venda como vinda desta página (a VSL fica sem essa marca) */
     const t = b.innerHTML; b.dataset.ab = '1'; b.innerHTML = 'Abrindo o pagamento…';
     const volta = () => { b.innerHTML = t; delete b.dataset.ab; };
     fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY },
