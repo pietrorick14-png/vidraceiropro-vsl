@@ -404,6 +404,8 @@ img,video,svg,iframe{max-width:100%}
   .feat,.feat.wide{grid-template-columns:minmax(0,1fr) 96px}
   .plan{padding:24px 20px}
 }
+video::-webkit-media-controls-start-playback-button,video::-webkit-media-controls-overlay-play-button,video::-webkit-media-controls{display:none!important;-webkit-appearance:none;opacity:0}
+.wshot video[controls]::-webkit-media-controls{display:flex!important;opacity:1}
 </style>
 </head>
 <body>
@@ -454,7 +456,7 @@ img,video,svg,iframe{max-width:100%}
       <div class="dim h"><i class="l"></i><i class="a"></i><i class="b"></i><span>90 cm</span></div>
       <div class="dim v"><i class="l"></i><i class="a"></i><i class="b"></i><span>190 cm</span></div>
       <div class="phone"><div class="scr">
-        <video src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto"></video>
+        <video data-auto src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto"></video>
       </div></div>
       <div class="badge-float"><span class="dot"><svg><use href="#i-check"/></svg></span><span><b>Aprovado</b>pelo link, no WhatsApp</span></div>
     </div>
@@ -794,16 +796,21 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let cycle = 'mensal';
 
-  /* vídeos tocam só quando aparecem na tela */
-  const vids = document.querySelectorAll('video[data-auto]');
+  /* vídeos tocam sozinhos (sem som, em loop) quando aparecem na tela */
+  const vids = document.querySelectorAll('video[data-auto]'), vis = new Set();
+  const tocar = v => { v.muted = true; v.defaultMuted = true; v.playsInline = true; if (v.paused) { const p = v.play(); if (p) p.catch(()=>{}); } };
+  vids.forEach(v => { v.muted = true; v.setAttribute('muted',''); v.setAttribute('playsinline',''); });
   const vio = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
-    if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; if (!reduce) v.play().catch(()=>{}); }
-    else v.pause();
+    if (e.isIntersecting) { vis.add(v); if (v.preload === 'none') v.preload = 'auto'; tocar(v); }
+    else { vis.delete(v); v.pause(); }
   }), {rootMargin:'120px 0px'});
   vids.forEach(v => vio.observe(v));
-  const hero = document.querySelector('.hero video');
-  if (reduce && hero) { hero.removeAttribute('autoplay'); hero.pause(); }
+  /* iPhone em modo de economia de bateria bloqueia o autoplay: qualquer toque ou rolagem liga os vídeos visíveis */
+  const acorda = () => vis.forEach(tocar);
+  ['touchstart','touchend','click','scroll','pointerdown'].forEach(ev => addEventListener(ev, acorda, {passive:true}));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) acorda(); });
+  setInterval(acorda, 1500);
 
   /* passos com celular fixo (computador) */
   const steps = document.querySelectorAll('.step'), svids = document.querySelectorAll('#sticky-scr video');
@@ -811,7 +818,7 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
   const setStep = i => {
     steps.forEach((s,k) => s.classList.toggle('on', k===i));
     svids.forEach((v,k) => { const on = k===i; v.classList.toggle('on', on);
-      if (on) { v.preload='auto'; if (!reduce) v.play().catch(()=>{}); } else v.pause(); });
+      if (on) { v.preload='auto'; v.muted=true; v.play().catch(()=>{}); } else v.pause(); });
   };
   const sio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && desk.matches) setStep(+e.target.dataset.step); }), {rootMargin:'-45% 0px -45% 0px'});
   steps.forEach(s => sio.observe(s));
