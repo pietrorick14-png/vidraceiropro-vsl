@@ -409,6 +409,27 @@ img,video,svg,iframe{max-width:100%}
 }
 video::-webkit-media-controls-start-playback-button,video::-webkit-media-controls-overlay-play-button,video::-webkit-media-controls{display:none!important;-webkit-appearance:none;opacity:0}
 .wshot video[controls]::-webkit-media-controls{display:flex!important;opacity:1}
+/* ---------- computador: o celular dos 3 passos fica parado na tela (overflow:hidden no html+body quebrava o sticky) ---------- */
+@supports (overflow:clip){html,body{overflow-x:clip}}
+.steps .sticky .phone{width:min(300px,calc((100vh - 150px) * 480 / 1006))}
+@media (min-width:901px){
+  section{padding:clamp(64px,8vw,104px) 0}
+  .sec-head{margin-bottom:clamp(28px,3.5vw,44px)}
+  .hero{padding:92px 0 60px}
+  .hero h1{font-size:clamp(46px,5.1vw,72px)}
+  .hero .lede{margin-top:18px}
+  .hero .ctas{margin-top:24px}
+  .stage{width:min(310px,calc((100vh - 230px) * 9 / 16))}
+  .step{min-height:56vh}
+  .model .vid{aspect-ratio:3/4}
+  .feat{grid-template-columns:minmax(0,1fr) 122px}
+  .feat.wide{grid-template-columns:minmax(0,1fr) 150px}
+  .feat .phone{margin-bottom:-96px}
+  .feat.wide .phone{margin-bottom:-150px}
+  .client{grid-template-columns:minmax(0,430px) auto;justify-content:center;gap:clamp(48px,9vw,140px)}
+  .wshot{height:min(calc(100svh - 260px),520px)}
+}
+
 /* ---------- escolha do pagamento (cartão ou Pix) ---------- */
 .psheet{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(2,10,12,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .psheet[hidden]{display:none}
