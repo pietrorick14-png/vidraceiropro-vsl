@@ -440,7 +440,7 @@ video::-webkit-media-controls-start-playback-button,video::-webkit-media-control
 .ps-op:hover{border-color:var(--teal);transform:translateY(-1px)}
 .ps-op#ps-cartao{border-color:rgba(247,196,72,.6);background:rgba(247,196,72,.07)}
 .ps-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(63,214,207,.12);font-size:20px}
-.ps-t b{display:block;font:800 17px/1.2 var(--f-display);font-stretch:110%}
+.ps-t b{display:block;white-space:nowrap;font:800 17px/1.2 var(--f-display);font-stretch:110%}
 .ps-t small{display:block;color:var(--muted);font-size:13px;line-height:1.3;margin-top:2px}
 .ps-v{font:900 22px/1 var(--f-display);font-stretch:112%;color:var(--gold);white-space:nowrap;text-align:right}
 .ps-v i{font:600 12px/1 var(--f-body);font-style:normal;color:var(--muted);margin-left:2px}
@@ -1009,10 +1009,10 @@ video::-webkit-media-controls-start-playback-button,video::-webkit-media-control
     <span class="tag" id="ps-tag">Plano Individual</span>
     <h3 id="ps-tit">Como você quer pagar?</h3>
     <button type="button" class="ps-op" data-plan="individual" data-metodo="cartao" id="ps-cartao">
-      <span class="ps-ic">💳</span><span class="ps-t"><b>Cartão de crédito</b><small id="ps-cs">Cancele quando quiser.</small></span><span class="ps-v" id="ps-cv">R$ 89,90<i>/mês</i></span>
+      <span class="ps-ic">💳</span><span class="ps-t"><b>Cartão de crédito</b></span><span class="ps-v" id="ps-cv">R$ 89,90<i>/mês</i></span>
     </button>
     <button type="button" class="ps-op" data-plan="individual" data-metodo="pix" id="ps-pix">
-      <span class="ps-ic">⚡</span><span class="ps-t"><b>Pix</b><small id="ps-ps">Pague uma vez e use 30 dias.</small></span><span class="ps-v" id="ps-pv">R$ 99,90</span>
+      <span class="ps-ic">⚡</span><span class="ps-t"><b>Pix</b></span><span class="ps-v" id="ps-pv">R$ 99,90<i>/mês</i></span>
     </button>
     <p class="ps-fine">Pagamento seguro · acesso na hora, por e-mail · 7 dias de garantia</p>
   </div>
@@ -1104,9 +1104,7 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
     const pl = b.dataset.pick, P = PRECO[pl], v = P[cycle] || P.mensal, an = cycle === 'anual';
     document.getElementById('ps-tag').textContent = 'Plano ' + P.nome + (an ? ' · anual' : ' · mensal');
     document.getElementById('ps-cv').innerHTML = 'R$ ' + v.c + '<i>' + (an ? '/ano' : '/mês') + '</i>';
-    document.getElementById('ps-pv').innerHTML = 'R$ ' + v.p + (an ? '<i>à vista</i>' : '');
-    document.getElementById('ps-cs').textContent = 'Cancele quando quiser.';
-    document.getElementById('ps-ps').textContent = an ? 'Pague uma vez e use 12 meses.' : 'Pague uma vez e use 30 dias.';
+    document.getElementById('ps-pv').innerHTML = 'R$ ' + v.p + '<i>' + (an ? '/ano' : '/mês') + '</i>';
     ps.querySelectorAll('.ps-op').forEach(o => o.dataset.plan = pl);
     psVolta = b; ps.hidden = false; document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('ps-cartao').focus(), 30);
