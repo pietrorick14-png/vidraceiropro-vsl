@@ -409,6 +409,32 @@ img,video,svg,iframe{max-width:100%}
 }
 video::-webkit-media-controls-start-playback-button,video::-webkit-media-controls-overlay-play-button,video::-webkit-media-controls{display:none!important;-webkit-appearance:none;opacity:0}
 .wshot video[controls]::-webkit-media-controls{display:flex!important;opacity:1}
+/* ---------- escolha do pagamento (cartão ou Pix) ---------- */
+.psheet{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(2,10,12,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.psheet[hidden]{display:none}
+.ps-box{position:relative;width:min(440px,100%);display:grid;gap:12px;padding:26px 22px 20px;border-radius:24px;background:linear-gradient(180deg,#123137,#0b1f23 70%);border:1px solid rgba(63,214,207,.45);box-shadow:0 30px 80px -20px #000;animation:pop .35s cubic-bezier(.2,1.3,.4,1) both}
+.ps-box h3{font-size:24px;margin-bottom:4px}
+.ps-x{position:absolute;top:10px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font:400 24px/1 var(--f-body);cursor:pointer}
+.ps-op{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:16px;border:1.5px solid var(--line);background:var(--panel);color:var(--text);text-align:left;cursor:pointer;font:inherit;transition:border-color .2s,transform .2s}
+.ps-op:hover{border-color:var(--teal);transform:translateY(-1px)}
+.ps-op#ps-cartao{border-color:rgba(247,196,72,.6);background:rgba(247,196,72,.07)}
+.ps-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(63,214,207,.12);font-size:20px}
+.ps-t b{display:block;font:800 17px/1.2 var(--f-display);font-stretch:110%}
+.ps-t small{display:block;color:var(--muted);font-size:13px;line-height:1.3;margin-top:2px}
+.ps-v{font:900 22px/1 var(--f-display);font-stretch:112%;color:var(--gold);white-space:nowrap;text-align:right}
+.ps-v i{font:600 12px/1 var(--f-body);font-style:normal;color:var(--muted);margin-left:2px}
+.ps-fine{text-align:center;color:var(--muted);font-size:12.5px;margin-top:2px}
+@media (max-width:760px){
+  .psheet{place-items:end center;padding:0}
+  .ps-box{width:100%;border-radius:20px 20px 0 0;padding:20px 12px 18px;gap:8px}
+  .ps-box h3{font-size:19px}
+  .ps-op{grid-template-columns:34px minmax(0,1fr) auto;gap:10px;padding:11px 12px;border-radius:12px}
+  .ps-ic{width:34px;height:34px;font-size:17px;border-radius:10px}
+  .ps-t b{font-size:14.5px}.ps-t small{font-size:11.5px}
+  .ps-v{font-size:18px}
+  .ps-fine{font-size:11px}
+}
+
 /* ================= CELULAR COMPACTO (até 760px): cara de sistema, mais coisa por tela ================= */
 .mob{display:none}
 @media (max-width:760px){
@@ -877,8 +903,7 @@ video::-webkit-media-controls-start-playback-button,video::-webkit-media-control
           <li><svg><use href="#i-check"/></svg>Suporte pelo WhatsApp</li>
           <li><svg><use href="#i-check"/></svg>1 celular + 1 computador</li>
         </ul>
-        <button type="button" class="btn block" data-plan="individual" data-metodo="cartao">Assinar o Individual</button>
-        <button type="button" class="pixlink" data-plan="individual" data-metodo="pix" data-m="Prefiro pagar no Pix · R$ 99,90/mês" data-a="Prefiro pagar no Pix · R$ 799 à vista">Prefiro pagar no Pix · R$ 99,90/mês</button>
+        <button type="button" class="btn block" data-pick="individual">Assinar o Individual</button>
       </article>
       <article class="plan hi">
         <span class="ribbon">Pra vidraçaria com equipe</span>
@@ -889,8 +914,7 @@ video::-webkit-media-controls-start-playback-button,video::-webkit-media-control
                     <li><svg><use href="#i-check"/></svg>Celulares e computadores sem limite</li>
           <li><svg><use href="#i-check"/></svg>Ideal pra quem tem medidor e instalador</li>
         </ul>
-        <button type="button" class="btn block" data-plan="equipe" data-metodo="cartao">Assinar o Equipe</button>
-        <button type="button" class="pixlink" data-plan="equipe" data-metodo="pix" data-m="Prefiro pagar no Pix · R$ 129,90/mês" data-a="Prefiro pagar no Pix · R$ 1.099 à vista">Prefiro pagar no Pix · R$ 129,90/mês</button>
+        <button type="button" class="btn block" data-pick="equipe">Assinar o Equipe</button>
       </article>
     </div>
     <div class="pay"><span><svg><use href="#i-lock"/></svg>Pagamento seguro</span><span><svg><use href="#i-card"/></svg>Cartão de crédito</span><span><svg><use href="#i-pix"/></svg>Pix</span><span><svg><use href="#i-check"/></svg>Acesso na hora, por e-mail</span><span><svg><use href="#i-phone"/></svg>Suporte no WhatsApp: seg a sex, das 9h às 20h</span></div>
@@ -957,6 +981,20 @@ video::-webkit-media-controls-start-playback-button,video::-webkit-media-control
 <div class="dock" id="dock" aria-hidden="true">
   <div><small>Vidraceiro Pro</small><b>a partir de R$ 89,90/mês</b></div>
   <a class="btn" href="#planos" tabindex="-1">Assinar</a>
+</div>
+<div class="psheet" id="psheet" role="dialog" aria-modal="true" aria-labelledby="ps-tit" hidden>
+  <div class="ps-box">
+    <button type="button" class="ps-x" id="ps-x" aria-label="Fechar">&times;</button>
+    <span class="tag" id="ps-tag">Plano Individual</span>
+    <h3 id="ps-tit">Como você quer pagar?</h3>
+    <button type="button" class="ps-op" data-plan="individual" data-metodo="cartao" id="ps-cartao">
+      <span class="ps-ic">💳</span><span class="ps-t"><b>Cartão de crédito</b><small id="ps-cs">Cancele quando quiser.</small></span><span class="ps-v" id="ps-cv">R$ 89,90<i>/mês</i></span>
+    </button>
+    <button type="button" class="ps-op" data-plan="individual" data-metodo="pix" id="ps-pix">
+      <span class="ps-ic">⚡</span><span class="ps-t"><b>Pix</b><small id="ps-ps">Pague uma vez e use 30 dias.</small></span><span class="ps-v" id="ps-pv">R$ 99,90</span>
+    </button>
+    <p class="ps-fine">Pagamento seguro · acesso na hora, por e-mail · 7 dias de garantia</p>
+  </div>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
@@ -1034,6 +1072,27 @@ const FN = 'https://mffrtkdxldcgcatsqgnj.supabase.co/functions/v1/compra-site', 
   };
   tbtn.forEach(b => b.onclick = () => setCycle(b.dataset.cycle));
 
+
+  /* assinar: pergunta se paga no cartão ou no Pix */
+  const ps = document.getElementById('psheet');
+  const PRECO = {individual:{nome:'Individual', mensal:{c:'89,90', p:'99,90'}, anual:{c:'799', p:'799'}},
+                 equipe:{nome:'Equipe', mensal:{c:'119,90', p:'129,90'}, anual:{c:'1.099', p:'1.099'}}};
+  let psVolta = null;
+  const psFecha = () => { ps.hidden = true; document.body.style.overflow = ''; if (psVolta) psVolta.focus(); };
+  document.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+    const pl = b.dataset.pick, P = PRECO[pl], v = P[cycle] || P.mensal, an = cycle === 'anual';
+    document.getElementById('ps-tag').textContent = 'Plano ' + P.nome + (an ? ' · anual' : ' · mensal');
+    document.getElementById('ps-cv').innerHTML = 'R$ ' + v.c + '<i>' + (an ? '/ano' : '/mês') + '</i>';
+    document.getElementById('ps-pv').innerHTML = 'R$ ' + v.p + (an ? '<i>à vista</i>' : '');
+    document.getElementById('ps-cs').textContent = 'Cancele quando quiser.';
+    document.getElementById('ps-ps').textContent = an ? 'Pague uma vez e use 12 meses.' : 'Pague uma vez e use 30 dias.';
+    ps.querySelectorAll('.ps-op').forEach(o => o.dataset.plan = pl);
+    psVolta = b; ps.hidden = false; document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('ps-cartao').focus(), 30);
+  }));
+  document.getElementById('ps-x').onclick = psFecha;
+  ps.addEventListener('click', e => { if (e.target === ps) psFecha(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !ps.hidden) psFecha(); });
   /* botões de compra: abre o checkout da Stripe do Vidraceiro Pro */
   const qs = new URLSearchParams(location.search);
   const qf = qs.get('funil'); const FUNIL = /^[a-z0-9_-]{2,20}$/i.test(qf || '') ? qf : 'pagina';
